@@ -32,3 +32,16 @@ class Player:
         else:
             print("Your inventory is empty!")
 
+    def move_player(self, command):
+        if command in self.current_room.get_valid_directions():
+            if command == "e":
+                self.current_room = self.current_room.e_to
+            elif command == "w":
+                self.current_room = self.current_room.w_to
+            elif command == "n":
+                self.current_room = self.current_room.n_to
+            elif command == "s":
+                self.current_room = self.current_room.s_to
+        else:
+            print(f"You cannot move the {command} from here")
+
