@@ -59,12 +59,7 @@ directions = ["e", "w", "s", "n"]
 
 while True:
     current_room = player.current_room
-
-    print(current_room.name)
-    print(current_room.description)
-    print("Items in room")
-    for i in current_room.items:
-        print("~\t" + i.name)
+    current_room.print_room_details()
 
     user_input = input("Enter direction you would like to move, or q to quit: ")
     input_list = user_input.split()
