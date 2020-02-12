@@ -70,21 +70,12 @@ while True:
     input_list = user_input.split()
     if len(input_list) == 1:
         command = input_list[0]
-        if command in directions and command in current_room.get_valid_directions():
-            if command == "e":
-                player.current_room = current_room.e_to
-            elif command == "w":
-                player.current_room = current_room.w_to
-            elif command == "n":
-                player.current_room = current_room.n_to
-            elif command == "s":
-                player.current_room = current_room.s_to
+        if command in directions:
+            player.move_player(command)
         elif command == "i" or command == "inventory":
             player.list_inventory()
         elif command == "q":
             break
-        elif command in directions and user_input not in current_room.get_valid_directions():
-            print(f"You cannot move to the {user_input} from here")
         else:
             print("Please enter a valid cardinal direction")
 
