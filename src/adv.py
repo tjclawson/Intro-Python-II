@@ -1,27 +1,27 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside': Room("Outside Cave Entrance",
+                    "North of you, the cave mount beckons"),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
+    'foyer': Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
 the distance, but there is no way across the chasm."""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
+    'narrow': Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
-
 
 # Link rooms together
 
@@ -34,6 +34,10 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# add items
+room['outside'].items.append(Item("Test1", "Test item"))
+room['outside'].items.append(Item("Test2", "Test item"))
+room['outside'].items.append(Item("Test3", "Test item"))
 #
 # Main
 #
@@ -52,6 +56,7 @@ player = Player("one", room["outside"])
 # If the user enters "q", quit the game.
 directions = ["e", "w", "s", "n"]
 
+
 def get_valid_directions(room):
     list = []
     if room.n_to is not None:
@@ -68,25 +73,36 @@ def get_valid_directions(room):
 while True:
     current_room = player.current_room
     valid_directions = get_valid_directions(current_room)
+
     print(current_room.name)
     print(current_room.description)
     print("Items in room")
     for i in current_room.items:
-        print("~\t" + i)
-    user_input = input("Enter direction you would like to move, or q to quit: ")
-    if user_input in directions and user_input in valid_directions:
-        if user_input == "e":
-            player.current_room = current_room.e_to
-        elif user_input == "w":
-            player.current_room = current_room.w_to
-        elif user_input == "n":
-            player.current_room = current_room.n_to
-        elif user_input == "s":
-            player.current_room = current_room.s_to
+        print("~\t" + i.name)
 
-    elif user_input == "q":
-        break
-    elif user_input in directions and user_input not in valid_directions:
-        print(f"You cannot move to the {user_input} from here")
+    user_input = input("Enter direction you would like to move, or q to quit: ")
+    input_list = user_input.split()
+    if len(input_list) == 1:
+        if user_input in directions and user_input in valid_directions:
+            if user_input == "e":
+                player.current_room = current_room.e_to
+            elif user_input == "w":
+                player.current_room = current_room.w_to
+            elif user_input == "n":
+                player.current_room = current_room.n_to
+            elif user_input == "s":
+                player.current_room = current_room.s_to
+
+        elif user_input == "q":
+            break
+        elif user_input in directions and user_input not in valid_directions:
+            print(f"You cannot move to the {user_input} from here")
+        else:
+            print("Please enter a valid cardinal direction")
+
     else:
-        print("Please enter a valid cardinal direction")
+        if input_list[0] == "get" or "take":
+            item = [item for item in current_room.items if item.name == input_list[1]][0]
+            player.inventory.append(item)
+            current_room.items.remove(item)
+            print(player.inventory[0].name)
