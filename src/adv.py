@@ -70,6 +70,9 @@ while True:
     valid_directions = get_valid_directions(current_room)
     print(current_room.name)
     print(current_room.description)
+    print("Items in room")
+    for i in current_room.items:
+        print("~\t" + i)
     user_input = input("Enter direction you would like to move, or q to quit: ")
     if user_input in directions and user_input in valid_directions:
         if user_input == "e":
