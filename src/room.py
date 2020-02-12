@@ -51,3 +51,10 @@ class Room:
         except ValueError:
             print(f"{item_name} is not in this room!")
 
+    def print_room_details(self):
+        print(self.name)
+        print(self.description)
+        print("Items in room")
+        for item in self.items:
+            print(f"~\t{item.name}: {item.description}")
+
