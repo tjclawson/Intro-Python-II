@@ -24,3 +24,11 @@ class Player:
         except UnboundLocalError:
             print(f"You do not have {item_name} in your inventory")
 
+    def list_inventory(self):
+        if len(self.inventory) != 0:
+            print("Your Inventory:")
+            for item in self.inventory:
+                print(f"~\t{item.name}: {item.description}")
+        else:
+            print("Your inventory is empty!")
+
