@@ -25,7 +25,8 @@ class Room:
         return directions_list
 
     def add_item(self, item):
-        self.items.append(item)
+        if item is not None:
+            self.items.append(item)
 
     def remove_item(self, item_name):
         try:
