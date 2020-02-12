@@ -91,6 +91,7 @@ while True:
             try:
                 item = [item for item in current_room.items if item.name == input_list[1]][0]
                 player.inventory.append(item)
+                item.on_take()
                 current_room.items.remove(item)
             except IndexError:
                 print(f"{input_list[1]} is not an item in this room!")
