@@ -79,6 +79,8 @@ while True:
                 player.current_room = current_room.n_to
             elif command == "s":
                 player.current_room = current_room.s_to
+        elif command == "i" or command == "inventory":
+            player.list_inventory()
         elif command == "q":
             break
         elif command in directions and user_input not in current_room.get_valid_directions():
