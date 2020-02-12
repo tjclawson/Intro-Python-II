@@ -7,3 +7,7 @@ class Player:
         self.name = name
         self.current_room = current_room
         self.inventory = []
+
+    def pickup_item(self, item):
+        if item is not None:
+            self.inventory.append(item)
