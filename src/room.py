@@ -23,3 +23,30 @@ class Room:
         if self.w_to is not None:
             directions_list.append("w")
         return directions_list
+
+    def add_item(self, item):
+        self.items.append(item)
+
+    def remove_item(self, item_name):
+        try:
+            item = None
+            for i in self.items:
+                if i.name == item_name:
+                    item = i
+                    break
+            self.items.remove(item)
+        except IndexError:
+            print(f"{item_name} is not in this room!")
+
+    def get_item(self, item_name):
+        try:
+            item = None
+            for i in self.items:
+                if i.name == item_name:
+                    item = i
+                    break
+            self.items.remove(item)
+            return item
+        except ValueError:
+            print(f"{item_name} is not in this room!")
+
