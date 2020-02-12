@@ -57,22 +57,8 @@ player = Player("one", room["outside"])
 directions = ["e", "w", "s", "n"]
 
 
-def get_valid_directions(room):
-    list = []
-    if room.n_to is not None:
-        list.append("n")
-    if room.s_to is not None:
-        list.append("s")
-    if room.e_to is not None:
-        list.append("e")
-    if room.w_to is not None:
-        list.append("w")
-    return list
-
-
 while True:
     current_room = player.current_room
-    valid_directions = get_valid_directions(current_room)
 
     print(current_room.name)
     print(current_room.description)
@@ -83,7 +69,7 @@ while True:
     user_input = input("Enter direction you would like to move, or q to quit: ")
     input_list = user_input.split()
     if len(input_list) == 1:
-        if user_input in directions and user_input in valid_directions:
+        if user_input in directions and user_input in current_room.get_valid_directions():
             if user_input == "e":
                 player.current_room = current_room.e_to
             elif user_input == "w":
@@ -95,7 +81,7 @@ while True:
 
         elif user_input == "q":
             break
-        elif user_input in directions and user_input not in valid_directions:
+        elif user_input in directions and user_input not in current_room.get_valid_directions():
             print(f"You cannot move to the {user_input} from here")
         else:
             print("Please enter a valid cardinal direction")
