@@ -69,26 +69,33 @@ while True:
     user_input = input("Enter direction you would like to move, or q to quit: ")
     input_list = user_input.split()
     if len(input_list) == 1:
-        if user_input in directions and user_input in current_room.get_valid_directions():
-            if user_input == "e":
+        command = input_list[0]
+        if command in directions and command in current_room.get_valid_directions():
+            if command == "e":
                 player.current_room = current_room.e_to
-            elif user_input == "w":
+            elif command == "w":
                 player.current_room = current_room.w_to
-            elif user_input == "n":
+            elif command == "n":
                 player.current_room = current_room.n_to
-            elif user_input == "s":
+            elif command == "s":
                 player.current_room = current_room.s_to
-
-        elif user_input == "q":
+        elif command == "q":
             break
-        elif user_input in directions and user_input not in current_room.get_valid_directions():
+        elif command in directions and user_input not in current_room.get_valid_directions():
             print(f"You cannot move to the {user_input} from here")
         else:
             print("Please enter a valid cardinal direction")
 
     else:
-        if input_list[0] == "get" or "take":
-            player.pickup_item(current_room.get_item(input_list[1]))
+        action = input_list[0]
+        item_name = input_list[1]
+        if action == "get" or action == "take":
+            picked_item = current_room.get_item(item_name)
+            player.pickup_item(picked_item)
+        elif action == "drop":
+            dropped_item = player.drop_item(item_name)
+            current_room.add_item(dropped_item)
+
 
 
 
