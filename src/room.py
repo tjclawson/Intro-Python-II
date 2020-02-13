@@ -4,7 +4,7 @@ from lightsource import LightSource
 
 
 class Room:
-    def __init__(self, name, description, is_light):
+    def __init__(self, name, description, is_light, monster):
         self.name = name
         self.description = description
         self.n_to = None
@@ -14,6 +14,7 @@ class Room:
         self.items = []
         self.is_light = is_light
         self.is_room_illuminated = is_light
+        self.monster = monster
 
     def __str__(self):
         details = ""
