@@ -2,6 +2,7 @@ from room import Room
 from item import Item
 from lightsource import LightSource
 from monster import Monster
+from weapon import Weapon
 
 class World:
     def __init__(self):
@@ -41,6 +42,7 @@ class World:
         self.room['outside'].items.append(Item("Whistle", "Useless Whistle"))
         self.room['outside'].items.append(LightSource("Torch", "Torch to help you see"))
         self.room['narrow'].items.append(Item("Book", "Book in a language you can't understand"))
+        self.room['foyer'].items.append(Weapon("Sword", "A basic sword"))
 
         # Add monsters
         self.room['narrow'].monster = Monster("Minotaur", 10)
