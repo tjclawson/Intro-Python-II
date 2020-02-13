@@ -46,3 +46,4 @@ class World:
         print('Check your inventory with "i" or "inventory"')
         print('Pickup items by with "take <item_name>" or "get <item_name>"')
         print('Drop items by with "drop <item_name>"')
+        print('Quit game with "q"')
