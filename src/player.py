@@ -1,6 +1,7 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 from lightsource import LightSource
+from weapon import Weapon
 
 
 class Player:
@@ -45,6 +46,14 @@ class Player:
         result = False
         for item in self.inventory:
             if isinstance(item, LightSource):
+                result = True
+                break
+        return result
+
+    def has_weapon(self):
+        result = False
+        for item in self.inventory:
+            if isinstance(item, Weapon):
                 result = True
                 break
         return result
