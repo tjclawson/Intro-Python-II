@@ -1,3 +1,6 @@
+import random
+
+
 class Monster:
     def __init__(self, name, hp):
         self.name = name
@@ -7,4 +10,8 @@ class Monster:
         return f"{self.name}: {self.hp}HP"
 
     def on_attack(self):
-        self.hp -= 1
+        if random.randint(1, 2) == 1:
+            print("Your attack was successful")
+            self.hp -= 1
+        else:
+            print("Your attacked missed!")
