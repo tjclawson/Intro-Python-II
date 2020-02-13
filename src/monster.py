@@ -5,3 +5,6 @@ class Monster:
 
     def __str__(self):
         return f"{self.name}: {self.hp}HP"
+
+    def on_attack(self):
+        self.hp -= 1
