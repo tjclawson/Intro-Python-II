@@ -56,9 +56,12 @@ class Room:
     def print_room_details(self):
         print(self.name)
         print(self.description)
-        print("Items in room")
-        for item in self.items:
-            print(f"~\t{item.name}: {item.description}")
+        if len(self.items) != 0:
+            print("Items in room")
+            for item in self.items:
+                print(f"~\t{item.name}: {item.description}")
+        else:
+            print("There are no items in this room")
 
     def contains_lightsource(self):
         result = False
