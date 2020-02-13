@@ -1,8 +1,6 @@
-from room import Room
 from player import Player
-from item import Item
-from lightsource import LightSource
 from world import World
+
 
 #
 # Main
@@ -24,6 +22,16 @@ while True:
         current_room.is_room_illuminated = True
 
     print(current_room)
+
+    while current_room.monster is not None:
+        print("\nTHERE IS A MONSTER IN THIS ROOM!")
+        print(current_room.monster)
+        option = input('What will you do? Use "attack" to attack the monster, use "run" to run away: ')
+        if option == "run":
+            current_room = player.last_room
+            player.current_room = player.last_room
+        
+        print(current_room)
 
     user_input = input(">>> ")
     input_list = user_input.split()
