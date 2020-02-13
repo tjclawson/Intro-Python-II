@@ -8,6 +8,7 @@ class Player:
         self.name = name
         self.current_room = current_room
         self.inventory = []
+        self.last_room = current_room
 
     def pickup_item(self, item):
         if item is not None:
@@ -35,6 +36,7 @@ class Player:
 
     def move_player(self, command):
         if command in self.current_room.get_valid_directions():
+            self.last_room = self.current_room
             self.current_room = getattr(self.current_room, f"{command}_to")
         else:
             print(f"\nYou cannot move the {command} from here")
