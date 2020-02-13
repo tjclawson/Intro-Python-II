@@ -39,6 +39,7 @@ room['treasure'].s_to = room['narrow']
 room['outside'].items.append(Item("Bag", "Useless Bag"))
 room['outside'].items.append(Item("Whistle", "Useless Whistle"))
 room['outside'].items.append(LightSource("Torch", "Torch to help you see"))
+room['narrow'].items.append(Item("Book", "Book in a language you can't understand"))
 #
 # Main
 #
@@ -60,14 +61,17 @@ directions = ["e", "w", "s", "n"]
 
 while True:
     current_room = player.current_room
+    room_is_illuminated = False
 
     if current_room.is_light or current_room.contains_lightsource() or player.has_lightsource():
         current_room.print_room_details()
+        room_is_illuminated = True
     else:
         print("It's pitch black!")
 
     user_input = input("Enter direction you would like to move, or q to quit: ")
     input_list = user_input.split()
+
     if len(input_list) == 1:
         command = input_list[0]
         if command in directions:
@@ -82,9 +86,11 @@ while True:
     else:
         action = input_list[0]
         item_name = input_list[1]
-        if action == "get" or action == "take":
+        if action == "get" or action == "take" and room_is_illuminated:
             picked_item = current_room.get_item(item_name)
             player.pickup_item(picked_item)
+        elif action == "get" or action == "take" and not room_is_illuminated:
+            print("Good luck finding that in the dark!")
         elif action == "drop":
             dropped_item = player.drop_item(item_name)
             current_room.add_item(dropped_item)
