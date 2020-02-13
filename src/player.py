@@ -1,5 +1,6 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+from lightsource import LightSource
 
 
 class Player:
@@ -37,4 +38,12 @@ class Player:
             self.current_room = getattr(self.current_room, f"{command}_to")
         else:
             print(f"You cannot move the {command} from here")
+
+    def has_lightsource(self):
+        result = False
+        for item in self.inventory:
+            if isinstance(item, LightSource):
+                result = True
+                break
+        return result
 

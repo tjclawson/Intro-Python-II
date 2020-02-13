@@ -1,9 +1,10 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
+from lightsource import LightSource
 
 
 class Room:
-    def __init__(self, name, description):
+    def __init__(self, name, description, is_light):
         self.name = name
         self.description = description
         self.n_to = None
@@ -11,6 +12,7 @@ class Room:
         self.w_to = None
         self.e_to = None
         self.items = []
+        self.is_light = is_light
 
     def get_valid_directions(self):
         directions_list = []
@@ -57,4 +59,12 @@ class Room:
         print("Items in room")
         for item in self.items:
             print(f"~\t{item.name}: {item.description}")
+
+    def contains_lightsource(self):
+        result = False
+        for item in self.items:
+            if isinstance(item, LightSource):
+                result = True
+                break
+        return result
 
