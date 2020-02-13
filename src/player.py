@@ -23,21 +23,21 @@ class Player:
             item.on_drop()
             return item
         except UnboundLocalError:
-            print(f"You do not have {item_name} in your inventory")
+            print(f"\nYou do not have {item_name} in your inventory")
 
     def list_inventory(self):
         if len(self.inventory) != 0:
-            print("Your Inventory:")
+            print("\nYour Inventory:")
             for item in self.inventory:
                 print(f"~\t{item.name}: {item.description}")
         else:
-            print("Your inventory is empty!")
+            print("\nYour inventory is empty!")
 
     def move_player(self, command):
         if command in self.current_room.get_valid_directions():
             self.current_room = getattr(self.current_room, f"{command}_to")
         else:
-            print(f"You cannot move the {command} from here")
+            print(f"\nYou cannot move the {command} from here")
 
     def has_lightsource(self):
         result = False
