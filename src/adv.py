@@ -64,7 +64,7 @@ while True:
     room_is_illuminated = False
 
     if current_room.is_light or current_room.contains_lightsource() or player.has_lightsource():
-        current_room.print_room_details()
+        print(current_room)
         room_is_illuminated = True
     else:
         print("It's pitch black!")
