@@ -23,15 +23,24 @@ while True:
 
     print(current_room)
 
-    while current_room.monster is not None:
+    while current_room.monster is not None and current_room.is_room_illuminated:
         print("\nTHERE IS A MONSTER IN THIS ROOM!")
         print(current_room.monster)
         option = input('What will you do? Use "attack" to attack the monster, use "run" to run away: ')
         if option == "run":
             current_room = player.last_room
             player.current_room = player.last_room
-        
-        print(current_room)
+        elif option == "attack":
+            if player.has_weapon():
+                current_room.monster.on_attack()
+                if current_room.monster.hp == 0:
+                    current_room.monster = None
+                    print("You defeated the monster!")
+                    print(current_room)
+            else:
+                print("You do not have a weapon to attack with!")
+        else:
+            print("Please enter a valid command")
 
     user_input = input(">>> ")
     input_list = user_input.split()
