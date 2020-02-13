@@ -61,15 +61,14 @@ directions = ["e", "w", "s", "n"]
 
 while True:
     current_room = player.current_room
-    room_is_illuminated = False
+    current_room.is_room_illuminated = False
 
     if current_room.is_light or current_room.contains_lightsource() or player.has_lightsource():
-        print(current_room)
-        room_is_illuminated = True
-    else:
-        print("It's pitch black!")
+        current_room.is_room_illuminated = True
 
-    user_input = input("Enter direction you would like to move, or q to quit: ")
+    print(current_room)
+
+    user_input = input(">>> ")
     input_list = user_input.split()
 
     if len(input_list) == 1:
@@ -81,16 +80,14 @@ while True:
         elif command == "q":
             break
         else:
-            print("Please enter a valid cardinal direction")
+            print("Please enter a valid command")
 
     else:
         action = input_list[0]
         item_name = input_list[1]
-        if action == "get" or action == "take" and room_is_illuminated:
+        if action == "get" or action == "take":
             picked_item = current_room.get_item(item_name)
             player.pickup_item(picked_item)
-        elif action == "get" or action == "take" and not room_is_illuminated:
-            print("Good luck finding that in the dark!")
         elif action == "drop":
             dropped_item = player.drop_item(item_name)
             current_room.add_item(dropped_item)

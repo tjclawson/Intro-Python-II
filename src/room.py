@@ -13,18 +13,22 @@ class Room:
         self.e_to = None
         self.items = []
         self.is_light = is_light
+        self.is_room_illuminated = is_light
 
     def __str__(self):
         details = ""
-        details += f"\n{self.name}\n\n"
-        details += f"{self.description}\n\n"
+        if self.is_room_illuminated:
+            details += f"\n{self.name}\n\n"
+            details += f"{self.description}\n\n"
 
-        if len(self.items) != 0:
-            details += "Items in room\n"
-            for item in self.items:
-                details += f"~\t{item.name}: {item.description}\n"
+            if len(self.items) != 0:
+                details += "Items in room\n"
+                for item in self.items:
+                    details += f"~\t{item.name}: {item.description}\n"
+            else:
+                details += "There are no items in this room"
         else:
-            details += "There are no items in this room"
+            details = "It's pitch black!"
         return details
 
     def get_valid_directions(self):
@@ -55,16 +59,19 @@ class Room:
             print(f"{item_name} is not in this room!")
 
     def get_item(self, item_name):
-        try:
-            item = None
-            for i in self.items:
-                if i.name == item_name:
-                    item = i
-                    break
-            self.items.remove(item)
-            return item
-        except ValueError:
-            print(f"{item_name} is not in this room!")
+        if self.is_room_illuminated:
+            try:
+                item = None
+                for i in self.items:
+                    if i.name == item_name:
+                        item = i
+                        break
+                self.items.remove(item)
+                return item
+            except ValueError:
+                print(f"{item_name} is not in this room!")
+        else:
+            print("Good luck finding that in the dark!")
 
     def contains_lightsource(self):
         result = False
