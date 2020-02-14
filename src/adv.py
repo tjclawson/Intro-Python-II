@@ -24,6 +24,8 @@ while True:
 
     if player.current_room.monster is not None:
         player = Battle(player, player.current_room.monster).battle()
+        if player.hp == 0:
+            break
         print(player.current_room)
 
     user_input = input(">>> ")
