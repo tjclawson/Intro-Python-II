@@ -28,6 +28,7 @@ class Battle:
                     if self.monster.hp == 0:
                         self.player.current_room.monster = None
                         print("You defeated the monster!")
+                        break
                     print(f"{self.monster.name} is attacking!")
                     self.player.on_attack()
                     if self.player.hp == 0:
