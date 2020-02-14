@@ -2,6 +2,7 @@
 # currently.
 from lightsource import LightSource
 from weapon import Weapon
+import random
 
 
 class Player:
@@ -10,6 +11,7 @@ class Player:
         self.current_room = current_room
         self.inventory = []
         self.last_room = current_room
+        self.hp = 1
 
     def pickup_item(self, item):
         if item is not None:
@@ -58,3 +60,9 @@ class Player:
                 break
         return result
 
+    def on_attack(self):
+        if random.randint(1, 2) == 1:
+            print("You were hurt!")
+            self.hp -= 1
+        else:
+            print("The attack missed!")
