@@ -41,6 +41,8 @@ while True:
             world.help()
         elif command == "q":
             break
+        elif command == "health":
+            print(f"{player.name}: {player.hp}HP")
         else:
             print('\nPlease enter a valid command, enter "help" to see a list of valid commands')
 

@@ -50,6 +50,7 @@ class World:
     def help(self):
         print('\nMove with "n", "s", "e", and "w"')
         print('Check your inventory with "i" or "inventory"')
+        print('Check your health with "health"')
         print('Pickup items by with "take <item_name>" or "get <item_name>"')
         print('Drop items by with "drop <item_name>"')
         print('Quit game with "q"')
