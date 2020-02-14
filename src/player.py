@@ -6,12 +6,12 @@ import random
 
 
 class Player:
-    def __init__(self, name, current_room):
+    def __init__(self, name, current_room, hp):
         self.name = name
         self.current_room = current_room
         self.inventory = []
         self.last_room = current_room
-        self.hp = 1
+        self.hp = hp
 
     def pickup_item(self, item):
         if item is not None:

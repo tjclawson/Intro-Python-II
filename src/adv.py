@@ -11,7 +11,7 @@ world = World()
 # Initialize player using user selected name and set room to outside
 print("\nWelcome to Python Adventure!")
 user_name = input("\nPlease enter your desired username: ")
-player = Player(f"{user_name}", world.room["outside"])
+player = Player(f"{user_name}", world.room["outside"], 3)
 
 
 while True:
